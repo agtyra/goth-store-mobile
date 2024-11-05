@@ -1,7 +1,7 @@
 # 💀 ⛓️ Goth Store ⚰️🦇
 
 <details>
-<Summary><b>Assignment 7</b></summary>
+<Summary><b>ASSIGNMENT 7</b></summary>
 
 ### 1. Explain what are stateless widgets and stateful widgets, and explain the difference between them.
 
@@ -65,6 +65,7 @@ Stateful widgets are widgets that can change over time or in response to user in
     }
     ```
 #### ✔️Create three simple buttons with icons and texts for Viewing the product list (View Product List), Adding a product (Add Product), Logout (Logout) and implement different colors for each button
+- In ```MyHomePage```, I create a list called items with three ```ItemHomepage instances```, each representing a button and set the name, icon, and initial color for each button:
 ```dart
 class MyHomePage extends StatelessWidget {
   final String npm = '2306172086';
@@ -136,6 +137,9 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 #### ✔️Display a Snackbar with messages
+- I use the onTap property in InkWell to respond to taps on each button.
+- In the onTap callback, I use ScaffoldMessenger.of(context).showSnackBar() to display a SnackBar with a specific message for each button.
+- Then, in the onTap callback, customize the SnackBar content based on the button name by using ```${item.name}```
 ```dart
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
