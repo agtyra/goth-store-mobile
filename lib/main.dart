@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goth_store/menu.dart';
+import 'package:goth_store/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Goth Store',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.grey, 
-        ).copyWith(
-          secondary: Colors.black,
+        primaryColor: Colors.black,
+        colorScheme: ColorScheme.dark(
+          primary: Colors.black,
+          secondary: Colors.grey,
         ),
       ),
       home: MyHomePage(),

@@ -31,8 +31,8 @@ Stateful widgets are widgets that can change over time or in response to user in
 #### ✔️Create a new Flutter application with the E-Commerce theme that matches the previous assignments.
 - First, I create a new application in my designated directory by running the following code.
     ```
-    flutter create vinyl_shop
-    cd vinyl_shop
+    flutter create goth_store
+    cd goth_store
     ```
 - I then create new file called menu.dart and add ```import 'package:flutter/material.dart'```
 - From my ```main.dart``` file, I move the class ```MyHomePage``` and ```_MyHomePageState``` to the ```menu.dart``` file.
@@ -187,5 +187,24 @@ class ItemCard extends StatelessWidget {
   }
 }
   ```
+
+</details>
+
+<details>
+<Summary><b>ASSIGNMENT 8</b></summary>
+
+### 1. What is the purpose of const in Flutter? Explain the advantages of using const in Flutter code. When should we use const, and when should it not be used?
+In Flutter, const creates compile-time constants, ensuring widgets are created only once and reused, improving performance and memory efficiency. const should be used for widgets or objects that remain unchanged throughout the app’s lifecycle, like labels or static decorations. However, it shouldn’t be used for dynamic widgets that respond to user interaction.
+
+### 2. Explain and compare the usage of Column and Row in Flutter. Provide example implementations of each layout widget!
+Column and Row are layout widgets that arrange children vertically or horizontally, respectively. Column is ideal for stacking items top-to-bottom (Example: list of buttons (View, Add, Logout)), while Row arranges them left-to-right (Example: list of name, class, and npm in home page). Both support alignment and spacing options, but Column is best for vertical layouts, and Row for inline horizontal layouts.
+
+### 3. List the input elements you used on the form page in this assignment. Are there other Flutter input elements you didn’t use in this assignment? Explain!
+My assignment uses TextFormField for name, description, price, and gothness inputs. Other Flutter input widgets not used include Checkbox, Radio Button, Slider, Switch, and DropdownButton, which are helpful for binary choices, multi-options, and ranged selections in more complex forms.
+
+### 4. How do you set the theme within a Flutter application to ensure consistency? Did you implement a theme in your application?
+Yes, I implemented a theme in this application to ensure consistency across the Goth Store app. I used the ThemeData object within the MaterialApp widget, setting primaryColor to black and applying a ColorScheme.dark with black as the primary color and grey as the secondary color. 
+
+### 5. How do you manage navigation in a multi-page Flutter application?
 
 </details>
