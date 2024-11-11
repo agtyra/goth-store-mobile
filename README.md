@@ -206,5 +206,6 @@ My assignment uses TextFormField for name, description, price, and gothness inpu
 Yes, I implemented a theme in this application to ensure consistency across the Goth Store app. I used the ThemeData object within the MaterialApp widget, setting primaryColor to black and applying a ColorScheme.dark with black as the primary color and grey as the secondary color. 
 
 ### 5. How do you manage navigation in a multi-page Flutter application?
+In Flutter, navigation between pages is commonly managed with functions like push(), pop(), and pushReplacement(). The push() function adds a new route (page) onto the navigation stack, displaying it on top of the current screen. This is useful for moving to a new screen while keeping the ability to return to the previous one. The pop() function removes the current route from the stack, effectively taking the user back to the previous screen. Meanwhile, pushReplacement() is used when you want to replace the current route with a new one, without keeping the old route on the stack. 
 
 </details>
