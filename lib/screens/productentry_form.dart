@@ -1,5 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:goth_store/screens/menu.dart';
 import 'package:goth_store/widgets/left_drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class GothEntryFormPage extends StatefulWidget {
   const GothEntryFormPage({super.key});
@@ -17,6 +21,7 @@ class _GothEntryFormPageState extends State<GothEntryFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -24,7 +29,7 @@ class _GothEntryFormPageState extends State<GothEntryFormPage> {
             'Add Product',
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.secondary ,
+        backgroundColor: Theme.of(context).colorScheme.primary ,
         foregroundColor: Colors.white,
       ),
       drawer: const LeftDrawer(),
@@ -155,38 +160,37 @@ class _GothEntryFormPageState extends State<GothEntryFormPage> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
-                          Theme.of(context).colorScheme.secondary),
+                          Theme.of(context).colorScheme.primary),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('Product successfully saved'),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Name: $_name'),
-                                    Text('Description: $_description'),
-                                    Text('Price: $_price'),
-                                    Text('Gothness $_gothness'),
-                                  ],
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: const Text('OK', style: TextStyle(color: Colors.white)),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    _formKey.currentState!.reset();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
+                        final response = await request.postJson(
+                            "http://localhost:8000/add-flutter/",
+                            jsonEncode(<String, String>{
+                                'name': _name,
+                                'description': _description,
+                                'price': _price.toString(),
+                                'gothness': _gothness.toString(),
+                            }),
                         );
+                        if (context.mounted) {
+                          if (response['status'] == 'success') {
+                            ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                                content: Text("New product has saved successfully!"),
+                            ));
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (context) => MyHomePage()),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                              content:
+                                  Text("Something went wrong, please try again."),
+                            ));
+                          }
+                        }
                       }
                     },
                     child: const Text(
